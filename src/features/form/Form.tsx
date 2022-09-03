@@ -1,6 +1,5 @@
 import {
   FormControl,
-  Heading,
   Container,
   Progress,
   Image,
@@ -43,6 +42,8 @@ import {
 } from './constants';
 import FileUploadInput from './FileUploadInput';
 
+import Header from './Header';
+
 const Form = () => {
   const state = useAppSelector((state: RootState) => state.form);
   const {
@@ -69,7 +70,7 @@ const Form = () => {
 
   return (
     <Container maxW='container.lg'>
-      <Heading>Stable Diffusion Dream Server</Heading>
+      <Header />
 
       <form onSubmit={handleSubmit}>
         <HStack paddingTop={15}>
