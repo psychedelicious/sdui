@@ -1,11 +1,11 @@
-import { Container } from '@chakra-ui/react';
-import Form from './features/form/form';
+import { Box } from '@chakra-ui/react';
+import Form from './features/form/Form';
 
 const App = () => {
     return (
-        <Container>
+        <Box>
             <Form />
-        </Container>
+        </Box>
     );
 };
 
