@@ -25,7 +25,7 @@ const initialState: FormState = {
   cfgScale: 7.5,
   height: 512,
   width: 512,
-  sampler: 'KLMS',
+  sampler: 'k_lms',
   seed: -1,
   shouldDisplayInProgress: false,
   img2imgStrength: 0.75,
