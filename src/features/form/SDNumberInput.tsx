@@ -28,7 +28,7 @@ const SDNumberInput = ({
   precision,
 }: Props) => {
   return (
-    <FormControl variant="floating">
+    <FormControl>
       <FormLabel>{label}</FormLabel>
       <NumberInput
       size={'sm'}

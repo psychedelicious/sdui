@@ -1,4 +1,7 @@
-export const VALID_SAMPLERS: Array<string> = [
+// TODO: use Enums?
+
+// Valid samplers
+export const SAMPLERS: Array<string> = [
     'ddim',
     'plms',
     'k_lms',
@@ -9,14 +12,17 @@ export const VALID_SAMPLERS: Array<string> = [
     'k_heun',
 ];
 
-export const VALID_WIDTHS: Array<number> = [
+// Valid image widths
+export const WIDTHS: Array<number> = [
     64, 128, 192, 256, 320, 384, 448, 512, 576, 640, 704, 768, 832, 896, 960,
     1024,
 ];
 
-export const VALID_HEIGHTS: Array<number> = [
+// Valid image heights
+export const HEIGHTS: Array<number> = [
     64, 128, 192, 256, 320, 384, 448, 512, 576, 640, 704, 768, 832, 896, 960,
     1024,
 ];
 
-export const VALID_UPSCALING_LEVELS: Array<string> = ['None', '2x', '4x'];
+// Valid upscaling levels
+export const UPSCALING_LEVELS: Array<string> = ['None', '2x', '4x'];

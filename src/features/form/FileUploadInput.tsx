@@ -2,7 +2,7 @@ import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 const FileUploadInput = () => {
   return (
-    <FormControl variant="floating">
+    <FormControl>
       <FormLabel>Initial image</FormLabel>
       <Input type='file' accept='.jpg, .jpeg, .png' />
     </FormControl>

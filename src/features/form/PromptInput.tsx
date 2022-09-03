@@ -8,7 +8,7 @@ const PromptInput = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <FormControl isRequired variant='floating'>
+    <FormControl isRequired>
       <FormLabel>Prompt</FormLabel>
       <Input
         size={'sm'}

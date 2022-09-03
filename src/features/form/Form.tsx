@@ -29,20 +29,20 @@ import {
   setWidth,
 } from './formSlice';
 
-import PromptInput from './PromptInput';
 import SDNumberInput from './SDNumberInput';
 import SDSelect from './SDSelect';
 import SDSwitch from './SDSwitch';
 import SDButton from './SDButton';
-import {
-  VALID_HEIGHTS,
-  VALID_SAMPLERS,
-  VALID_UPSCALING_LEVELS,
-  VALID_WIDTHS,
-} from './constants';
+import PromptInput from './PromptInput';
+import Header from './Header';
 import FileUploadInput from './FileUploadInput';
 
-import Header from './Header';
+import {
+  HEIGHTS,
+  SAMPLERS,
+  UPSCALING_LEVELS,
+  WIDTHS,
+} from './constants';
 
 const Form = () => {
   const state = useAppSelector((state: RootState) => state.form);
@@ -108,7 +108,7 @@ const Form = () => {
             label='Sampler'
             value={sampler}
             onChange={(e) => dispatch(setSampler(e.target.value))}
-            validValues={VALID_SAMPLERS}
+            validValues={SAMPLERS}
           />
         </HStack>
 
@@ -117,14 +117,14 @@ const Form = () => {
             label='Width'
             value={width}
             onChange={(e) => dispatch(setWidth(Number(e.target.value)))}
-            validValues={VALID_WIDTHS}
+            validValues={WIDTHS}
           />
 
           <SDSelect
             label='Height'
             value={height}
             onChange={(e) => dispatch(setHeight(Number(e.target.value)))}
-            validValues={VALID_HEIGHTS}
+            validValues={HEIGHTS}
           />
 
           <SDNumberInput
@@ -188,7 +188,7 @@ const Form = () => {
             label='Upscaling Level'
             value={upscalingLevel}
             onChange={(e) => dispatch(setUpscalingLevel(e.target.value))}
-            validValues={VALID_UPSCALING_LEVELS}
+            validValues={UPSCALING_LEVELS}
           />
 
           <SDNumberInput

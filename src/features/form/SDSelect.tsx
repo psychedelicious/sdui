@@ -10,7 +10,7 @@ type Props = {
 
 const SDSelect = ({ label, value, onChange, validValues }: Props) => {
     return (
-        <FormControl variant='floating'>
+        <FormControl>
             <FormLabel size={'sm'}>{label}</FormLabel>
             <Select size={'sm'} onChange={onChange} value={value}>
                 {validValues.map((val, i) => (
