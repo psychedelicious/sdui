@@ -16,6 +16,7 @@ export interface FormState {
   gpfganStrength: number;
   upscalingLevel: string;
   upscalingStrength: number;
+  isProcessing: boolean;
 }
 
 const initialState: FormState = {
@@ -33,6 +34,7 @@ const initialState: FormState = {
   gpfganStrength: 0.8,
   upscalingLevel: 'None',
   upscalingStrength: 0.75,
+  isProcessing: false,
 };
 
 export const formSlice = createSlice({
@@ -81,6 +83,12 @@ export const formSlice = createSlice({
     setUpscalingStrength: (state, action: PayloadAction<number>) => {
       state.upscalingStrength = action.payload;
     },
+    setIsProcessing: (state, action: PayloadAction<boolean>) => {
+      state.isProcessing = action.payload;
+    },
+    resetSeed: (state) => {
+      state.seed = -1;
+    },
     resetForm: () => initialState,
   },
 });
@@ -101,6 +109,8 @@ export const {
   setGpfganStrength,
   setUpscalingLevel,
   setUpscalingStrength,
+  setIsProcessing,
+  resetSeed,
   resetForm,
 } = formSlice.actions;
 

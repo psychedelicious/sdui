@@ -5,6 +5,8 @@ import {
   Image,
   Text,
   Link,
+  Flex,
+  IconButton,
   HStack,
 } from '@chakra-ui/react';
 
@@ -12,8 +14,11 @@ import { RootState } from '../../app/store';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
+import { BsArrowCounterclockwise } from 'react-icons/bs';
+
 import {
   resetForm,
+  resetSeed,
   setCfgScale,
   setGpfganStrength,
   setHeight,
@@ -34,15 +39,10 @@ import SDSelect from './SDSelect';
 import SDSwitch from './SDSwitch';
 import SDButton from './SDButton';
 import PromptInput from './PromptInput';
-import Header from './Header';
-import FileUploadInput from './FileUploadInput';
+import SDHeader from './SDHeader';
+import SDFileUpload from './SDFileUpload';
 
-import {
-  HEIGHTS,
-  SAMPLERS,
-  UPSCALING_LEVELS,
-  WIDTHS,
-} from './constants';
+import { HEIGHTS, SAMPLERS, UPSCALING_LEVELS, WIDTHS } from './constants';
 
 const Form = () => {
   const state = useAppSelector((state: RootState) => state.form);
@@ -69,18 +69,15 @@ const Form = () => {
   };
 
   return (
-    <Container maxW='container.lg'>
-      <Header />
-
+    <Container>
       <form onSubmit={handleSubmit}>
-        <HStack paddingTop={15}>
+        <Flex paddingTop={5} gap={5}>
           <PromptInput />
-          <SDButton label='Generate' type='submit' colorScheme='blue' />
-        </HStack>
+        </Flex>
 
-        <HStack paddingTop={15}>
+        <HStack paddingTop={5}>
           <SDNumberInput
-            label='Images to generate'
+            label='Image Count'
             step={1}
             min={1}
             precision={0}
@@ -104,15 +101,23 @@ const Form = () => {
             value={cfgScale}
           />
 
+          <SDNumberInput
+            label='Seed'
+            step={1}
+            precision={0}
+            onChange={(v) => dispatch(setSeed(Number(v)))}
+            value={seed}
+          />
+
           <SDSelect
             label='Sampler'
             value={sampler}
+            width={150}
             onChange={(e) => dispatch(setSampler(e.target.value))}
             validValues={SAMPLERS}
           />
         </HStack>
-
-        <HStack paddingTop={15}>
+        <Flex paddingTop={5} gap={5}>
           <SDSelect
             label='Width'
             value={width}
@@ -127,23 +132,14 @@ const Form = () => {
             validValues={HEIGHTS}
           />
 
-          <SDNumberInput
-            label='Seed'
-            step={1}
-            precision={0}
-            onChange={(v) => dispatch(setSeed(Number(v)))}
-            value={seed}
+          <IconButton
+            aria-label='Reset seed to default'
+            icon={<BsArrowCounterclockwise />}
+            onClick={() => dispatch(resetSeed())}
           />
-
-          <SDButton label='Reset Seed' onClick={() => dispatch(setSeed(-1))} />
-        </HStack>
-
-        <HStack paddingTop={15}>
-          <SDButton
-            label='Reset to Defaults'
-            onClick={() => dispatch(resetForm())}
-          />
-
+          <SDButton label='Reset Seed' onClick={() => dispatch(resetSeed())} />
+        </Flex>
+        <Flex paddingTop={5} gap={5}>
           <SDSwitch
             label='Display in-progress images'
             isChecked={shouldDisplayInProgress}
@@ -151,10 +147,9 @@ const Form = () => {
               dispatch(setShouldDisplayInProgress(e.target.checked))
             }
           />
-        </HStack>
-
-        <HStack paddingTop={15}>
-          <FileUploadInput />
+        </Flex>
+        <Flex paddingTop={5} gap={5}>
+          <SDFileUpload />
 
           <SDNumberInput
             label='img2img Strength'
@@ -172,9 +167,8 @@ const Form = () => {
               dispatch(setShouldFitToWidthHeight(e.target.checked))
             }
           />
-        </HStack>
-
-        <HStack paddingTop={15}>
+        </Flex>
+        <Flex paddingTop={5} gap={5}>
           <SDNumberInput
             label='GPFGAN Strength'
             step={0.05}
@@ -199,14 +193,20 @@ const Form = () => {
             onChange={(v) => dispatch(setUpscalingStrength(Number(v)))}
             value={upscalingStrength}
           />
-        </HStack>
+        </Flex>
       </form>
 
       {/* WIP */}
 
       <FormControl>
         <Progress marginTop={15} marginBottom={15} value={50} />
+        <SDButton label='Generate Image' type='submit' colorScheme='blue' />
         <SDButton label='Cancel' colorScheme='red' />
+        <SDButton
+          label='Reset to Defaults'
+          colorScheme='green'
+          onClick={() => dispatch(resetForm())}
+        />
       </FormControl>
       <Image src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>' />
       <Text>Postprocessing...</Text>

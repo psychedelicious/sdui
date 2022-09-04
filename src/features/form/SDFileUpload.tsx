@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 
-const FileUploadInput = () => {
+const SDFileUpload = () => {
   return (
     <FormControl>
       <FormLabel>Initial image</FormLabel>
@@ -9,4 +9,4 @@ const FileUploadInput = () => {
   );
 };
 
-export default FileUploadInput;
+export default SDFileUpload;
