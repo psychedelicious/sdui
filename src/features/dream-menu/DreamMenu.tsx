@@ -16,8 +16,6 @@ import {
     setImg2imgStrength,
     setSampler,
     setSeed,
-    setShouldDisplayInProgress,
-    setShouldFitToWidthHeight,
     setSteps,
     setUpscalingLevel,
     setUpscalingStrength,
@@ -26,7 +24,6 @@ import {
 
 import SDNumberInput from '../../components/SDNumberInput';
 import SDSelect from '../../components/SDSelect';
-import SDSwitch from '../../components/SDSwitch';
 import SDButton from '../../components/SDButton';
 import SDFileUpload from '../../components/SDFileUpload';
 
@@ -46,9 +43,7 @@ const DreamMenu = () => {
         width,
         sampler,
         seed,
-        shouldDisplayInProgress,
         img2imgStrength,
-        shouldFitToWidthHeight,
         gfpganStrength,
         upscalingLevel,
         upscalingStrength,
@@ -60,7 +55,7 @@ const DreamMenu = () => {
 
     return (
         <Box>
-            <Flex direction={'column'} gap={1}>
+            <Flex direction={'column'} gap={2}>
                 <Flex>
                     <SDButton
                         label='Generate'
@@ -142,14 +137,6 @@ const DreamMenu = () => {
                     validValues={HEIGHTS}
                 />
 
-                <SDSwitch
-                    label='Display in-progress images'
-                    isChecked={shouldDisplayInProgress}
-                    onChange={(e) =>
-                        dispatch(setShouldDisplayInProgress(e.target.checked))
-                    }
-                />
-
                 <SDFileUpload />
 
                 <SDNumberInput
@@ -159,14 +146,6 @@ const DreamMenu = () => {
                     max={1}
                     onChange={(v) => dispatch(setImg2imgStrength(Number(v)))}
                     value={img2imgStrength}
-                />
-
-                <SDSwitch
-                    label='Fit to Width/Height'
-                    isChecked={shouldFitToWidthHeight}
-                    onChange={(e) =>
-                        dispatch(setShouldFitToWidthHeight(e.target.checked))
-                    }
                 />
 
                 <SDNumberInput

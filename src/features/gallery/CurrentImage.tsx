@@ -1,5 +1,5 @@
-import { Box, Image } from '@chakra-ui/react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { Image } from '@chakra-ui/react';
+import { useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import fallbackImgUrl from '../../assets/images/rick.jpeg';
 
@@ -12,6 +12,7 @@ const CurrentImage = () => {
     return (
         <Image
             boxSize='sm'
+            fit='contain'
             src={imageToDisplay?.url}
             fallbackSrc={fallbackImgUrl}
         />

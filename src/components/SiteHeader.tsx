@@ -8,6 +8,8 @@ import {
 } from '@chakra-ui/react';
 
 import { FaSun, FaMoon, FaGithub } from 'react-icons/fa';
+import { MdHelp } from 'react-icons/md';
+import SettingsModalButton from '../features/settings/SettingsModalButton';
 
 const SiteHeader = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -18,8 +20,25 @@ const SiteHeader = () => {
 
       <Spacer />
 
+      <SettingsModalButton />
+
       <IconButton
-        aria-label='Link to Github'
+        aria-label='Link to Github Issues'
+        variant='link'
+        fontSize={23}
+        size={'sm'}
+        icon={
+          <Link
+            isExternal
+            href='http://github.com/lstein/stable-diffusion/issues'
+          >
+            <MdHelp />
+          </Link>
+        }
+      />
+
+      <IconButton
+        aria-label='Link to Github Repo'
         variant='link'
         fontSize={20}
         size={'sm'}
@@ -35,7 +54,7 @@ const SiteHeader = () => {
         onClick={toggleColorMode}
         variant='link'
         size={'sm'}
-        fontSize={18}
+        fontSize={colorMode == 'light' ? 18 : 20}
         icon={colorMode == 'light' ? <FaMoon /> : <FaSun />}
       />
     </Flex>
