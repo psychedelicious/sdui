@@ -1,16 +1,8 @@
-import {
-    Accordion,
-    Box,
-    Grid,
-    GridItem,
-    Progress,
-    Image,
-} from '@chakra-ui/react';
+import { Grid, GridItem, Progress } from '@chakra-ui/react';
 import SDHeader from './features/form/SDHeader';
 import PromptInput from './features/form/PromptInput';
 import ImageRoll from './features/gallery/ImageRoll';
 import SDMenu from './features/form/SDMenu';
-import fallbackImgUrl from './assets/images/rick.jpeg';
 import CurrentImage from './features/gallery/CurrentImage';
 
 const App = () => {

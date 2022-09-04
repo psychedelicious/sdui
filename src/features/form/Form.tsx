@@ -39,7 +39,6 @@ import SDSelect from './SDSelect';
 import SDSwitch from './SDSwitch';
 import SDButton from './SDButton';
 import PromptInput from './PromptInput';
-import SDHeader from './SDHeader';
 import SDFileUpload from './SDFileUpload';
 
 import { HEIGHTS, SAMPLERS, UPSCALING_LEVELS, WIDTHS } from './constants';
@@ -112,7 +111,6 @@ const Form = () => {
           <SDSelect
             label='Sampler'
             value={sampler}
-            width={150}
             onChange={(e) => dispatch(setSampler(e.target.value))}
             validValues={SAMPLERS}
           />
