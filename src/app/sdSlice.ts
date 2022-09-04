@@ -101,7 +101,7 @@ const initialState: SDState = {
 };
 
 export const sdSlice = createSlice({
-  name: 'form',
+  name: 'sd',
   initialState,
   reducers: {
     setPrompt: (state, action: PayloadAction<string>) => {
@@ -185,6 +185,9 @@ export const sdSlice = createSlice({
     addImage: (state, action: PayloadAction<SDImage>) => {
       state.images.push(action.payload);
     },
+    setProgress: (state, action: PayloadAction<number>) => {
+      state.progress = action.payload;
+    },
   },
 });
 
@@ -209,6 +212,7 @@ export const {
   setCurrentImage,
   deleteImage,
   addImage,
+  setProgress,
 } = sdSlice.actions;
 
 export default sdSlice.reducer;
