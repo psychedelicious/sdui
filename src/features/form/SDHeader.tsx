@@ -36,7 +36,7 @@ const SDHeader = () => {
         variant='link'
         size={'sm'}
         fontSize={18}
-        icon={colorMode == 'light' ? <FaSun /> : <FaMoon />}
+        icon={colorMode == 'light' ? <FaMoon /> : <FaSun />}
       />
     </Flex>
   );
