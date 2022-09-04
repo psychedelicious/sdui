@@ -1,47 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
+import { testImages, testLogs } from './testingData';
 
-// images for testing only
-import testImage1 from '../assets/images/test1.png';
-import testImage2 from '../assets/images/test2.png';
-import testImage3 from '../assets/images/test3.png';
-import testImage4 from '../assets/images/test4.png';
-import testImage5 from '../assets/images/test5.png';
-import testImage6 from '../assets/images/test6.png';
-import testImage7 from '../assets/images/test7.png';
-import testImage8 from '../assets/images/test8.png';
-import testImage9 from '../assets/images/test9.png';
-import testImage10 from '../assets/images/test10.png';
-
-// populate gallery for testing
-const testImages: Array<SDImage> = [
-  testImage1,
-  testImage2,
-  testImage3,
-  testImage4,
-  testImage5,
-  testImage6,
-  testImage7,
-  testImage8,
-  testImage9,
-  testImage10,
-].map((url, i) => {
-  return {
-    uuid: uuidv4(),
-    url: url,
-    metadata: {
-      prompt: `test image ${i} prompt`,
-    },
-  };
-});
-
-interface SDMetadata {
+export interface SDMetadata {
   prompt: string;
 }
 
-interface SDImage {
-  uuid: string;
+export interface SDImage {
   url: string;
   metadata: SDMetadata;
 }
@@ -68,12 +33,14 @@ export interface SDState {
   // status
   isProcessing: boolean;
   progress: number;
+  log: Array<string>;
   // system
   isGFPGANAvailable: boolean;
   isESRGANAvailable: boolean;
 }
 
-const initialFormState = {
+// Initial state for the main generation parameters
+const initialDreamMenuState = {
   prompt: 'Cyborg pickle shooting lasers',
   imagesToGenerate: 1,
   steps: 50,
@@ -82,22 +49,33 @@ const initialFormState = {
   width: 512,
   sampler: 'k_lms',
   seed: -1,
-  shouldDisplayInProgress: false,
   img2imgStrength: 0.75,
-  shouldFitToWidthHeight: false,
   gfpganStrength: 0.8,
   upscalingLevel: 'None',
   upscalingStrength: 0.75,
 };
 
-const initialState: SDState = {
-  ...initialFormState,
-  isProcessing: false,
+// Initial state for image viewing
+const initialGalleryState = {
   currentImageIndex: 0,
   images: testImages,
-  progress: 0,
+};
+
+// Initial system state
+const initialSystemState = {
+  isProcessing: false,
+  progress: 50,
+  log: testLogs,
+  shouldFitToWidthHeight: false,
+  shouldDisplayInProgress: false,
   isGFPGANAvailable: true,
   isESRGANAvailable: true,
+};
+
+const initialState: SDState = {
+  ...initialDreamMenuState,
+  ...initialGalleryState,
+  ...initialSystemState,
 };
 
 export const sdSlice = createSlice({
@@ -155,7 +133,7 @@ export const sdSlice = createSlice({
     resetForm: (state) => {
       return {
         ...state,
-        ...initialFormState,
+        ...initialDreamMenuState,
       };
     },
     setCurrentImage: (state, action: PayloadAction<number>) => {
@@ -188,6 +166,9 @@ export const sdSlice = createSlice({
     setProgress: (state, action: PayloadAction<number>) => {
       state.progress = action.payload;
     },
+    appendLog: (state, action: PayloadAction<string>) => {
+      state.log.push(action.payload);
+    },
   },
 });
 
@@ -213,6 +194,7 @@ export const {
   deleteImage,
   addImage,
   setProgress,
+  appendLog,
 } = sdSlice.actions;
 
 export default sdSlice.reducer;
