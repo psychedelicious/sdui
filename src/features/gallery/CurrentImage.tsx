@@ -4,10 +4,10 @@ import { RootState } from '../../app/store';
 import fallbackImgUrl from '../../assets/images/rick.jpeg';
 
 const CurrentImage = () => {
-    const { currentImageId, images } = useAppSelector(
+    const { currentImageIndex, images } = useAppSelector(
         (state: RootState) => state.sd
     );
-    const imageToDisplay = images.find((image) => image.id === currentImageId);
+    const imageToDisplay = images[currentImageIndex];
 
     return (
         <Image

@@ -1,4 +1,4 @@
-import { Flex, IconButton, HStack, Box, ButtonGroup } from '@chakra-ui/react';
+import { Flex, IconButton, HStack, Box, Spacer } from '@chakra-ui/react';
 
 import { RootState } from '../../app/store';
 
@@ -24,15 +24,20 @@ import {
     setWidth,
 } from '../../app/sdSlice';
 
-import SDNumberInput from './SDNumberInput';
-import SDSelect from './SDSelect';
-import SDSwitch from './SDSwitch';
-import SDButton from './SDButton';
-import SDFileUpload from './SDFileUpload';
+import SDNumberInput from '../../components/SDNumberInput';
+import SDSelect from '../../components/SDSelect';
+import SDSwitch from '../../components/SDSwitch';
+import SDButton from '../../components/SDButton';
+import SDFileUpload from '../../components/SDFileUpload';
 
-import { HEIGHTS, SAMPLERS, UPSCALING_LEVELS, WIDTHS } from './constants';
+import {
+    HEIGHTS,
+    SAMPLERS,
+    UPSCALING_LEVELS,
+    WIDTHS,
+} from '../../app/constants';
 
-const SDMenu = () => {
+const DreamMenu = () => {
     const {
         imagesToGenerate,
         steps,
@@ -53,7 +58,23 @@ const SDMenu = () => {
 
     return (
         <Box>
-            <Flex wrap='wrap' gap={1}>
+            <Flex direction={'column'} gap={1}>
+                <Flex>
+                    <SDButton
+                        label='Generate'
+                        type='submit'
+                        colorScheme='green'
+                    />
+                    <Spacer />
+                    <SDButton label='Cancel' colorScheme='red' />
+                    <Spacer />
+                    <SDButton
+                        label='Reset'
+                        colorScheme='blue'
+                        onClick={() => dispatch(resetForm())}
+                    />
+                </Flex>
+
                 <SDNumberInput
                     label='Image Count'
                     step={1}
@@ -90,7 +111,7 @@ const SDMenu = () => {
 
                     <IconButton
                         aria-label='Reset seed to default'
-                        size={'xs'}
+                        size={'sm'}
                         icon={<BsArrowCounterclockwise />}
                         onClick={() => dispatch(resetSeed())}
                     />
@@ -172,24 +193,9 @@ const SDMenu = () => {
                     onChange={(v) => dispatch(setUpscalingStrength(Number(v)))}
                     value={upscalingStrength}
                 />
-                <ButtonGroup>
-                    <SDButton
-                        label='Generate'
-                        type='submit'
-                        colorScheme='green'
-                    />
-
-                    <SDButton label='Cancel' colorScheme='red' />
-
-                    <SDButton
-                        label='Reset'
-                        colorScheme='blue'
-                        onClick={() => dispatch(resetForm())}
-                    />
-                </ButtonGroup>
             </Flex>
         </Box>
     );
 };
 
-export default SDMenu;
+export default DreamMenu;

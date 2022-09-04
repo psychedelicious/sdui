@@ -31,9 +31,9 @@ const SDNumberInput = ({
   return (
     <FormControl>
       <HStack>
-        <Text fontSize={'xs'} whiteSpace='nowrap'>{label}</Text>
+        <Text fontSize={'sm'} whiteSpace='nowrap'>{label}</Text>
         <NumberInput
-          size={'xs'}
+          size={'sm'}
           step={step}
           min={min}
           max={max}

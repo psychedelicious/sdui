@@ -12,7 +12,7 @@ const SDSwitch = ({ label, isChecked, onChange }: Props) => {
     <FormControl>
       <HStack>
         <Switch size='sm' onChange={onChange} isChecked={isChecked} />
-        <FormLabel fontSize={'xs'} whiteSpace='nowrap'>{label}</FormLabel>
+        <FormLabel fontSize='sm' whiteSpace='nowrap' fontWeight={'normal'}>{label}</FormLabel>
       </HStack>
     </FormControl>
   );

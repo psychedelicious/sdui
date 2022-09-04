@@ -1,8 +1,8 @@
 import { Grid, GridItem, Progress } from '@chakra-ui/react';
-import SDHeader from './features/form/SDHeader';
-import PromptInput from './features/form/PromptInput';
+import SiteHeader from './components/SiteHeader';
+import DreamMenu from './features/dream-menu/DreamMenu';
+import PromptInput from './features/dream-menu/PromptInput';
 import ImageRoll from './features/gallery/ImageRoll';
-import SDMenu from './features/form/SDMenu';
 import CurrentImage from './features/gallery/CurrentImage';
 
 const App = () => {
@@ -19,10 +19,10 @@ const App = () => {
             gap='2'
         >
             <GridItem pl='2' pr='2' pt='2' area={'header'}>
-                <SDHeader />
+                <SiteHeader />
             </GridItem>
             <GridItem pl='2' area={'menu'} overflowY='scroll'>
-                <SDMenu />
+                <DreamMenu />
             </GridItem>
             <GridItem pr='2' area={'prompt'}>
                 <PromptInput />

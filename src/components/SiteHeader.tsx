@@ -9,7 +9,7 @@ import {
 
 import { FaSun, FaMoon, FaGithub } from 'react-icons/fa';
 
-const SDHeader = () => {
+const SiteHeader = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -42,4 +42,4 @@ const SDHeader = () => {
   );
 };
 
-export default SDHeader;
+export default SiteHeader;

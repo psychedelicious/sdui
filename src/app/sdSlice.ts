@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
+// images for testing only
 import testImage1 from '../assets/images/test1.png';
 import testImage2 from '../assets/images/test2.png';
 import testImage3 from '../assets/images/test3.png';
@@ -27,10 +28,10 @@ const testImages: Array<SDImage> = [
   testImage10,
 ].map((url, i) => {
   return {
-    id: uuidv4(),
+    uuid: uuidv4(),
     url: url,
     metadata: {
-      prompt: `example prompt ${i}`,
+      prompt: `test image ${i} prompt`,
     },
   };
 });
@@ -40,12 +41,13 @@ interface SDMetadata {
 }
 
 interface SDImage {
-  id: string;
+  uuid: string;
   url: string;
   metadata: SDMetadata;
 }
 
 export interface SDState {
+  // settings
   prompt: string;
   imagesToGenerate: number;
   steps: number;
@@ -60,9 +62,12 @@ export interface SDState {
   gpfganStrength: number;
   upscalingLevel: string;
   upscalingStrength: number;
-  isProcessing: boolean;
-  currentImageId: string;
+  // gallery
+  currentImageIndex: string;
   images: Array<SDImage>;
+  // status
+  isProcessing: boolean;
+  progress: number;
 }
 
 const initialFormState = {
@@ -85,7 +90,7 @@ const initialFormState = {
 
 const initialState: SDState = {
   ...initialFormState,
-  currentImageId: testImages[0].id,
+  currentImageIndex: 0,
   images: testImages,
 };
 
@@ -147,13 +152,27 @@ export const sdSlice = createSlice({
         ...initialFormState,
       };
     },
-    setCurrentImage: (state, action: PayloadAction<string>) => {
-      state.currentImageId = action.payload;
+    setCurrentImage: (state, action: PayloadAction<number>) => {
+      const newCurrentImageIndex = action.payload;
+      const newPrompt: string =
+        state.images[newCurrentImageIndex].metadata.prompt;
+
+      state.currentImageIndex = newCurrentImageIndex;
+
+      if (newPrompt) {
+        state.prompt = newPrompt;
+      }
     },
-    deleteImage: (state, action: PayloadAction<string>) => {
-      state.images = state.images.filter(
-        (image) => image.id !== action.payload
+    deleteImage: (state, action: PayloadAction<number>) => {
+      const newImages = state.images.filter((image, i) => i !== action.payload);
+
+      const newCurrentImageIndex = Math.min(
+        Math.max(state.currentImageIndex, 0),
+        newImages.length - 1
       );
+
+      state.images = newImages;
+      state.currentImageIndex = newCurrentImageIndex;
     },
     addImage: (state, action: PayloadAction<SDImage>) => {
       state.images.push(action.payload);
@@ -161,7 +180,6 @@ export const sdSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const {
   setPrompt,
   setImagesToGenerate,

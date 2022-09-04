@@ -12,13 +12,12 @@ const SDSelect = ({ label, value, onChange, validValues }: Props) => {
     return (
         <FormControl>
             <HStack>
-                <Text fontSize={'xs'} whiteSpace='nowrap'>
+                <Text fontSize={'sm'} whiteSpace='nowrap'>
                     {label}
                 </Text>
                 <Select
-                    fontSize={'xs'}
-                    size={'xs'}
-                    height={'24px'}
+                    fontSize={'sm'}
+                    size={'sm'}
                     onChange={onChange}
                     value={value}
                 >
