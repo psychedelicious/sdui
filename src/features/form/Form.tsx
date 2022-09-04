@@ -32,7 +32,7 @@ import {
   setUpscalingLevel,
   setUpscalingStrength,
   setWidth,
-} from './formSlice';
+} from '../../app/sdSlice';
 
 import SDNumberInput from './SDNumberInput';
 import SDSelect from './SDSelect';
@@ -44,7 +44,7 @@ import SDFileUpload from './SDFileUpload';
 import { HEIGHTS, SAMPLERS, UPSCALING_LEVELS, WIDTHS } from './constants';
 
 const Form = () => {
-  const state = useAppSelector((state: RootState) => state.form);
+  const state = useAppSelector((state: RootState) => state.sd);
   const {
     imagesToGenerate,
     steps,

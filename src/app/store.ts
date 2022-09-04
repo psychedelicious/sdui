@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import formReducer from '../features/form/formSlice';
-import galleryReducer from '../features/gallery/gallerySlice';
+import sdReducer from './sdSlice';
 
 export const store = configureStore({
   reducer: {
-    form: formReducer,
-    gallery: galleryReducer,
+    sd: sdReducer,
   },
 });
 

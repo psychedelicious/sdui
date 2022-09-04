@@ -4,16 +4,16 @@ import { RootState } from '../../app/store';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { BsUpload } from 'react-icons/bs';
 import { MdDeleteForever } from 'react-icons/md';
-import { deleteImage, setCurrentImage } from './gallerySlice';
+import { deleteImage, setCurrentImage } from '../../app/sdSlice';
 
 const ImageRoll = () => {
-    const { images } = useAppSelector((state: RootState) => state.gallery);
+    const { images } = useAppSelector((state: RootState) => state.sd);
     const dispatch = useAppDispatch();
 
     return (
         <VStack>
             {images.map((image) => (
-                <Box position={'relative'}>
+                <Box key={image.id} position={'relative'}>
                     <IconButton
                         position={'absolute'}
                         right={0}
@@ -31,7 +31,6 @@ const ImageRoll = () => {
                         onClick={() => dispatch(deleteImage(image.id))}
                     />
                     <Image
-                        key={image.id}
                         fit='contain'
                         fallbackSrc={fallbackImgUrl}
                         src={image.url}

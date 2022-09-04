@@ -5,7 +5,7 @@ import fallbackImgUrl from '../../assets/images/rick.jpeg';
 
 const CurrentImage = () => {
     const { currentImageId, images } = useAppSelector(
-        (state: RootState) => state.gallery
+        (state: RootState) => state.sd
     );
     const imageToDisplay = images.find((image) => image.id === currentImageId);
 

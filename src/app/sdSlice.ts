@@ -1,7 +1,51 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
-export interface FormState {
+import testImage1 from '../assets/images/test1.png';
+import testImage2 from '../assets/images/test2.png';
+import testImage3 from '../assets/images/test3.png';
+import testImage4 from '../assets/images/test4.png';
+import testImage5 from '../assets/images/test5.png';
+import testImage6 from '../assets/images/test6.png';
+import testImage7 from '../assets/images/test7.png';
+import testImage8 from '../assets/images/test8.png';
+import testImage9 from '../assets/images/test9.png';
+import testImage10 from '../assets/images/test10.png';
+
+// populate gallery for testing
+const testImages: Array<SDImage> = [
+  testImage1,
+  testImage2,
+  testImage3,
+  testImage4,
+  testImage5,
+  testImage6,
+  testImage7,
+  testImage8,
+  testImage9,
+  testImage10,
+].map((url, i) => {
+  return {
+    id: uuidv4(),
+    url: url,
+    metadata: {
+      prompt: `example prompt ${i}`,
+    },
+  };
+});
+
+interface SDMetadata {
+  prompt: string;
+}
+
+interface SDImage {
+  id: string;
+  url: string;
+  metadata: SDMetadata;
+}
+
+export interface SDState {
   prompt: string;
   imagesToGenerate: number;
   steps: number;
@@ -17,9 +61,11 @@ export interface FormState {
   upscalingLevel: string;
   upscalingStrength: number;
   isProcessing: boolean;
+  currentImageId: string;
+  images: Array<SDImage>;
 }
 
-const initialState: FormState = {
+const initialFormState = {
   prompt: 'Cyborg pickle shooting lasers',
   imagesToGenerate: 1,
   steps: 50,
@@ -37,7 +83,13 @@ const initialState: FormState = {
   isProcessing: false,
 };
 
-export const formSlice = createSlice({
+const initialState: SDState = {
+  ...initialFormState,
+  currentImageId: testImages[0].id,
+  images: testImages,
+};
+
+export const sdSlice = createSlice({
   name: 'form',
   initialState,
   reducers: {
@@ -89,7 +141,23 @@ export const formSlice = createSlice({
     resetSeed: (state) => {
       state.seed = -1;
     },
-    resetForm: () => initialState,
+    resetForm: (state) => {
+      return {
+        ...state,
+        ...initialFormState,
+      };
+    },
+    setCurrentImage: (state, action: PayloadAction<string>) => {
+      state.currentImageId = action.payload;
+    },
+    deleteImage: (state, action: PayloadAction<string>) => {
+      state.images = state.images.filter(
+        (image) => image.id !== action.payload
+      );
+    },
+    addImage: (state, action: PayloadAction<SDImage>) => {
+      state.images.push(action.payload);
+    },
   },
 });
 
@@ -112,6 +180,9 @@ export const {
   setIsProcessing,
   resetSeed,
   resetForm,
-} = formSlice.actions;
+  setCurrentImage,
+  deleteImage,
+  addImage,
+} = sdSlice.actions;
 
-export default formSlice.reducer;
+export default sdSlice.reducer;

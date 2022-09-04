@@ -22,7 +22,7 @@ import {
     setUpscalingLevel,
     setUpscalingStrength,
     setWidth,
-} from './formSlice';
+} from '../../app/sdSlice';
 
 import SDNumberInput from './SDNumberInput';
 import SDSelect from './SDSelect';
@@ -47,7 +47,7 @@ const SDMenu = () => {
         gpfganStrength,
         upscalingLevel,
         upscalingStrength,
-    } = useAppSelector((state: RootState) => state.form);
+    } = useAppSelector((state: RootState) => state.sd);
 
     const dispatch = useAppDispatch();
 

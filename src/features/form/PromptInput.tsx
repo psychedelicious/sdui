@@ -1,10 +1,10 @@
 import { FormControl, Textarea } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
-import { setPrompt } from './formSlice';
+import { setPrompt } from '../../app/sdSlice';
 
 const PromptInput = () => {
-  const { prompt } = useAppSelector((state: RootState) => state.form);
+  const { prompt } = useAppSelector((state: RootState) => state.sd);
   const dispatch = useAppDispatch();
 
   return (
