@@ -137,8 +137,6 @@ const DreamMenu = () => {
                     validValues={HEIGHTS}
                 />
 
-                <SDFileUpload />
-
                 <SDNumberInput
                     label='img2img Strength'
                     step={0.01}
@@ -177,6 +175,8 @@ const DreamMenu = () => {
                     onChange={(v) => dispatch(setUpscalingStrength(Number(v)))}
                     value={upscalingStrength}
                 />
+
+                <SDFileUpload />
             </Flex>
         </Box>
     );

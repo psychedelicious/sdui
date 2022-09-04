@@ -160,8 +160,11 @@ export const sdSlice = createSlice({
       state.images = newImages;
       state.currentImageIndex = newCurrentImageIndex;
     },
-    addImage: (state, action: PayloadAction<SDImage>) => {
-      state.images.push(action.payload);
+    addImage: (state, action: PayloadAction<string>) => {
+      state.images.push({
+        url: action.payload,
+        metadata: { prompt: `added image test prompt ${state.images.length}` },
+      });
     },
     setProgress: (state, action: PayloadAction<number>) => {
       state.progress = action.payload;
