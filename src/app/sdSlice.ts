@@ -63,7 +63,7 @@ export interface SDState {
   upscalingLevel: string;
   upscalingStrength: number;
   // gallery
-  currentImageIndex: string;
+  currentImageIndex: number;
   images: Array<SDImage>;
   // status
   isProcessing: boolean;
@@ -85,13 +85,14 @@ const initialFormState = {
   gpfganStrength: 0.8,
   upscalingLevel: 'None',
   upscalingStrength: 0.75,
-  isProcessing: false,
 };
 
 const initialState: SDState = {
   ...initialFormState,
+  isProcessing: false,
   currentImageIndex: 0,
   images: testImages,
+  progress: 0,
 };
 
 export const sdSlice = createSlice({
