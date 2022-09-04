@@ -1,4 +1,4 @@
-import { FormControl, Textarea } from '@chakra-ui/react';
+import { Textarea } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import { setPrompt } from '../../app/sdSlice';

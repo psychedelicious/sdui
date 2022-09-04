@@ -11,7 +11,7 @@ const ImageRoll = () => {
     return (
         <VStack>
             {images.map((image, i) => (
-                <Box key={i} position={'relative'}>
+                <Box key={image.url} position={'relative'}>
                     <IconButton
                         position={'absolute'}
                         right={0}

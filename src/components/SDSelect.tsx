@@ -30,8 +30,8 @@ const SDSelect = ({
                     onChange={onChange}
                     value={value}
                 >
-                    {validValues.map((val, i) => (
-                        <option key={i} value={val}>
+                    {validValues.map((val) => (
+                        <option key={val} value={val}>
                             {val}
                         </option>
                     ))}

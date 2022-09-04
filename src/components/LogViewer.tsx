@@ -37,8 +37,8 @@ const LogViewer = () => {
                     borderColor={borderColor}
                 >
                     <UnorderedList listStyleType='none'>
-                        {log.map((line, i) => (
-                            <ListItem key={i}>{line}</ListItem>
+                        {log.map((line) => (
+                            <ListItem key={line}>{line}</ListItem>
                         ))}
                     </UnorderedList>
                 </Flex>
