@@ -165,7 +165,9 @@ export const sdSlice = createSlice({
       }
     },
     deleteImage: (state, action: PayloadAction<number>) => {
-      const newImages = state.images.filter((image, i) => i !== action.payload);
+      const newImages = state.images.filter(
+        (_image, i) => i !== action.payload
+      );
 
       const newCurrentImageIndex = Math.min(
         Math.max(state.currentImageIndex, 0),
