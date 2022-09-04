@@ -10,7 +10,7 @@ import {
     resetForm,
     resetSeed,
     setCfgScale,
-    setGpfganStrength,
+    setGfpganStrength,
     setHeight,
     setImagesToGenerate,
     setImg2imgStrength,
@@ -49,9 +49,11 @@ const DreamMenu = () => {
         shouldDisplayInProgress,
         img2imgStrength,
         shouldFitToWidthHeight,
-        gpfganStrength,
+        gfpganStrength,
         upscalingLevel,
         upscalingStrength,
+        isGFPGANAvailable,
+        isESRGANAvailable,
     } = useAppSelector((state: RootState) => state.sd);
 
     const dispatch = useAppDispatch();
@@ -168,15 +170,17 @@ const DreamMenu = () => {
                 />
 
                 <SDNumberInput
-                    label='GPFGAN Strength'
+                    isDisabled={!isGFPGANAvailable}
+                    label='GFPGAN Strength'
                     step={0.05}
                     min={0}
                     max={1}
-                    onChange={(v) => dispatch(setGpfganStrength(Number(v)))}
-                    value={gpfganStrength}
+                    onChange={(v) => dispatch(setGfpganStrength(Number(v)))}
+                    value={gfpganStrength}
                 />
 
                 <SDSelect
+                    isDisabled={!isESRGANAvailable}
                     label='Upscaling Level'
                     value={upscalingLevel}
                     onChange={(e) =>
@@ -186,6 +190,7 @@ const DreamMenu = () => {
                 />
 
                 <SDNumberInput
+                    isDisabled={!isESRGANAvailable}
                     label='Upscaling Strength'
                     step={0.05}
                     min={0}

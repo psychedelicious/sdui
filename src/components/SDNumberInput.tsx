@@ -7,6 +7,7 @@ import {
   NumberDecrementStepper,
   HStack,
   Text,
+  FormLabel,
 } from '@chakra-ui/react';
 
 type Props = {
@@ -17,6 +18,7 @@ type Props = {
   min?: number;
   max?: number;
   precision?: number;
+  isDisabled?: boolean;
 };
 
 const SDNumberInput = ({
@@ -27,11 +29,16 @@ const SDNumberInput = ({
   min,
   max,
   precision,
+  isDisabled = false,
 }: Props) => {
   return (
-    <FormControl>
+    <FormControl isDisabled={isDisabled}>
       <HStack>
-        <Text fontSize={'sm'} whiteSpace='nowrap'>{label}</Text>
+        <FormLabel>
+          <Text fontSize={'sm'} whiteSpace='nowrap'>
+            {label}
+          </Text>
+        </FormLabel>
         <NumberInput
           size={'sm'}
           step={step}

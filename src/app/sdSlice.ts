@@ -59,7 +59,7 @@ export interface SDState {
   shouldDisplayInProgress: boolean;
   img2imgStrength: number;
   shouldFitToWidthHeight: boolean;
-  gpfganStrength: number;
+  gfpganStrength: number;
   upscalingLevel: string;
   upscalingStrength: number;
   // gallery
@@ -68,6 +68,9 @@ export interface SDState {
   // status
   isProcessing: boolean;
   progress: number;
+  // system
+  isGFPGANAvailable: boolean;
+  isESRGANAvailable: boolean;
 }
 
 const initialFormState = {
@@ -82,7 +85,7 @@ const initialFormState = {
   shouldDisplayInProgress: false,
   img2imgStrength: 0.75,
   shouldFitToWidthHeight: false,
-  gpfganStrength: 0.8,
+  gfpganStrength: 0.8,
   upscalingLevel: 'None',
   upscalingStrength: 0.75,
 };
@@ -93,6 +96,8 @@ const initialState: SDState = {
   currentImageIndex: 0,
   images: testImages,
   progress: 0,
+  isGFPGANAvailable: true,
+  isESRGANAvailable: true,
 };
 
 export const sdSlice = createSlice({
@@ -132,8 +137,8 @@ export const sdSlice = createSlice({
     setShouldFitToWidthHeight: (state, action: PayloadAction<boolean>) => {
       state.shouldFitToWidthHeight = action.payload;
     },
-    setGpfganStrength: (state, action: PayloadAction<number>) => {
-      state.gpfganStrength = action.payload;
+    setGfpganStrength: (state, action: PayloadAction<number>) => {
+      state.gfpganStrength = action.payload;
     },
     setUpscalingLevel: (state, action: PayloadAction<string>) => {
       state.upscalingLevel = action.payload;
@@ -195,7 +200,7 @@ export const {
   setShouldDisplayInProgress,
   setImg2imgStrength,
   setShouldFitToWidthHeight,
-  setGpfganStrength,
+  setGfpganStrength,
   setUpscalingLevel,
   setUpscalingStrength,
   setIsProcessing,
