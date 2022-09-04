@@ -1,9 +1,10 @@
-import { Grid, GridItem, Progress } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 import SiteHeader from './components/SiteHeader';
 import DreamMenu from './features/dream-menu/DreamMenu';
 import PromptInput from './features/dream-menu/PromptInput';
 import ImageRoll from './features/gallery/ImageRoll';
 import CurrentImage from './features/gallery/CurrentImage';
+import SDProgress from './components/SDProgress';
 
 const App = () => {
     return (
@@ -34,7 +35,7 @@ const App = () => {
                 <ImageRoll />
             </GridItem>
             <GridItem area={'progressBar'}>
-                <Progress size='xs' value={50} />
+                <SDProgress />
             </GridItem>
         </Grid>
     );
