@@ -1,7 +1,6 @@
 import { Box, IconButton, Image, VStack } from '@chakra-ui/react';
 import { RootState } from '../../app/store';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { BsUpload } from 'react-icons/bs';
 import { MdDeleteForever } from 'react-icons/md';
 import { deleteImage, setCurrentImage } from '../../app/sdSlice';
 
