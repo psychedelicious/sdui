@@ -17,8 +17,8 @@ const App = () => {
                   "menu prompt prompt"
                   "menu currentImage imageRoll"
                   "progressBar progressBar progressBar"`}
-                gridTemplateRows={'32px 80px 1fr 4px'}
-                gridTemplateColumns={'250px 1fr 150px'}
+                gridTemplateRows={'48px 100px 1fr 4px'}
+                gridTemplateColumns={'250px 4fr 1fr'}
                 gap='2'
             >
                 <GridItem pl='2' pr='2' pt='2' area={'header'}>
