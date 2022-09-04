@@ -1,11 +1,50 @@
-import { Box } from '@chakra-ui/react';
-import Form from './features/form/Form';
+import {
+    Accordion,
+    Box,
+    Grid,
+    GridItem,
+    Progress,
+    Image,
+} from '@chakra-ui/react';
+import SDHeader from './features/form/SDHeader';
+import PromptInput from './features/form/PromptInput';
+import ImageRoll from './features/gallery/ImageRoll';
+import SDMenu from './features/form/SDMenu';
+import fallbackImgUrl from './assets/images/rick.jpeg';
+import CurrentImage from './features/gallery/CurrentImage';
 
 const App = () => {
     return (
-        <Box>
-            <Form />
-        </Box>
+        <Grid
+            width='100vw'
+            height='100vh'
+            templateAreas={`"header header header"
+                  "menu prompt prompt"
+                  "menu currentImage imageRoll"
+                  "progressBar progressBar progressBar"`}
+            gridTemplateRows={'32px 80px 1fr'}
+            gridTemplateColumns={'250px 1fr 150px'}
+            gap='2'
+        >
+            <GridItem pl='2' pr='2' pt='2' area={'header'}>
+                <SDHeader />
+            </GridItem>
+            <GridItem pl='2' area={'menu'} overflowY='scroll'>
+                <SDMenu />
+            </GridItem>
+            <GridItem pr='2' area={'prompt'}>
+                <PromptInput />
+            </GridItem>
+            <GridItem area={'currentImage'}>
+                <CurrentImage />
+            </GridItem>
+            <GridItem pr='2' area={'imageRoll'} overflowY='scroll'>
+                <ImageRoll />
+            </GridItem>
+            <GridItem area={'progressBar'}>
+                <Progress size='xs' value={50} />
+            </GridItem>
+        </Grid>
     );
 };
 

@@ -6,16 +6,23 @@ type Props = {
     type?: 'button' | 'submit' | 'reset' | undefined;
     onClick?: MouseEventHandler<HTMLButtonElement>;
     colorScheme?: string;
+    isDisabled?: boolean;
 };
 
-const SDButton = ({ label, type, onClick, colorScheme }: Props) => {
+const SDButton = ({
+    label,
+    type,
+    onClick,
+    colorScheme,
+    isDisabled = false,
+}: Props) => {
     return (
         <Button
-            minInlineSize={'sm'}
-            height={8}
+            size={'sm'}
             colorScheme={colorScheme}
             onClick={onClick}
             type={type}
+            isDisabled={isDisabled}
         >
             {label}
         </Button>

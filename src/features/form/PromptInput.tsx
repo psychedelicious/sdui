@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { FormControl, Textarea } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import { setPrompt } from './formSlice';
@@ -8,18 +8,15 @@ const PromptInput = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <FormControl isRequired>
-      <FormLabel>Prompt</FormLabel>
-      <Input
-        size={'sm'}
-        id='prompt'
-        name='prompt'
-        type='text'
-        onChange={(e) => dispatch(setPrompt(e.target.value))}
-        value={prompt}
-        placeholder="I'm dreaming of..."
-      />
-    </FormControl>
+    <Textarea
+      id='prompt'
+      name='prompt'
+      resize='none'
+      size={'md'}
+      onChange={(e) => dispatch(setPrompt(e.target.value))}
+      value={prompt}
+      placeholder="I'm dreaming of..."
+    />
   );
 };
 

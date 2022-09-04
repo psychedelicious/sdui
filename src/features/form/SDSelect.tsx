@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, Select } from '@chakra-ui/react';
+import { FormControl, HStack, Select, Text } from '@chakra-ui/react';
 import { ChangeEventHandler } from 'react';
 
 type Props = {
@@ -11,14 +11,24 @@ type Props = {
 const SDSelect = ({ label, value, onChange, validValues }: Props) => {
     return (
         <FormControl>
-            <FormLabel size={'sm'}>{label}</FormLabel>
-            <Select size={'sm'} onChange={onChange} value={value}>
-                {validValues.map((val, i) => (
-                    <option key={i} value={val}>
-                        {val}
-                    </option>
-                ))}
-            </Select>
+            <HStack>
+                <Text fontSize={'xs'} whiteSpace='nowrap'>
+                    {label}
+                </Text>
+                <Select
+                    fontSize={'xs'}
+                    size={'xs'}
+                    height={'24px'}
+                    onChange={onChange}
+                    value={value}
+                >
+                    {validValues.map((val, i) => (
+                        <option key={i} value={val}>
+                            {val}
+                        </option>
+                    ))}
+                </Select>
+            </HStack>
         </FormControl>
     );
 };

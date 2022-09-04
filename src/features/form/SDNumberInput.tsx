@@ -1,11 +1,12 @@
 import {
   FormControl,
-  FormLabel,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  HStack,
+  Text,
 } from '@chakra-ui/react';
 
 type Props = {
@@ -29,22 +30,24 @@ const SDNumberInput = ({
 }: Props) => {
   return (
     <FormControl>
-      <FormLabel>{label}</FormLabel>
-      <NumberInput
-      size={'sm'}
-        step={step}
-        min={min}
-        max={max}
-        precision={precision}
-        onChange={onChange}
-        value={value}
-      >
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
+      <HStack>
+        <Text fontSize={'xs'} whiteSpace='nowrap'>{label}</Text>
+        <NumberInput
+          size={'xs'}
+          step={step}
+          min={min}
+          max={max}
+          precision={precision}
+          onChange={onChange}
+          value={value}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+      </HStack>
     </FormControl>
   );
 };
