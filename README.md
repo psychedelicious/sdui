@@ -1,5 +1,5 @@
 # Stable Diffusion Web UI
 
-React UI for https://github.com/lstein/stable-diffusion
+DEVELOPMENT MOVED TO https://github.com/psychedelicious/stable-diffusion/tree/api/
 
-UI live at https://peaceful-otter-7a427f.netlify.app/
+See `frontend` and `backend` folders
